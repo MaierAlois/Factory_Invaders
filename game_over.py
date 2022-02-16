@@ -8,8 +8,9 @@ class GameOver:
         self.running = True
         self.screen = screen
         self.last_click = "nothing"
-        self.image_menu = pygame.image.load("game_over.png").convert()
+        self.image_menu = pygame.image.load("game over.png").convert()
         self.button_play = pygame.image.load("retry_idle.png").convert_alpha()
+        self.font = font
         self.score_image = self.font.render(str(self.score), True, (255, 255, 255))
         self.mouse_pos = [0, 0]
        
@@ -45,7 +46,7 @@ class GameOver:
     def display(self):
         self.screen.blit(self.image_menu, (0, 0))
         self.screen.blit(self.button_play, (0, 0))
-        self.screen.blit(self.score_image, (270, 240))
+        self.screen.blit(self.score_image, (275, 240))
         pygame.display.flip()
     
     
