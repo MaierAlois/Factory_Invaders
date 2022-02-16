@@ -39,10 +39,12 @@ class Menu:
         if self.last_click == "play":
             self.running = False
         
+        
     def display(self):
         self.screen.blit(self.image_menu, (0, 0))
         self.screen.blit(self.button_play, (0, 0))
         pygame.display.flip()
+    
     
     def loop(self):
         while self.running:
