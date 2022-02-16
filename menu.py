@@ -2,6 +2,7 @@ import pygame
 import functions
 
 class Menu:
+    
     def __init__(self, screen):
         self.running = True
         self.screen = screen
@@ -9,18 +10,14 @@ class Menu:
         self.image_menu = pygame.image.load("menu.png").convert()
         self.button_play = pygame.image.load("play_idle.png").convert_alpha()
         self.mouse_pos = [0, 0]
-        
-    def reset(self):
-        self.running = True
-        self.last_click = "nothing"
-        self.image_menu = pygame.image.load("menu.png").convert()
-        self.button_play = pygame.image.load("play_idle.png").convert_alpha()
-        self.mouse_pos = [0, 0]
+       
         
     def get_button(self):
         return self.last_click
     
+    
     def handling_event(self):
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -29,8 +26,11 @@ class Menu:
                 if 164 < self.mouse_pos[0] < 164+312 and 276 < self.mouse_pos[1] < 276+104:
                     self.last_click = "play"
     
+    
     def update(self):
+        
         self.mouse_pos = pygame.mouse.get_pos()
+        
         if 164 < self.mouse_pos[0] < 164+312 and 276 < self.mouse_pos[1] < 276+104:
             self.button_play = pygame.image.load("play_over.png").convert_alpha()
         else:
