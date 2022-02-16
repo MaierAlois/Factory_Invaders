@@ -22,7 +22,27 @@ class Game:
         self.score = 0                                                                  # son nom dit tout
         self.font = font                                                                # récupération de la police d'affichage
         self.score_image = self.font.render(str(self.score), True, (155, 213, 169))     # premier rendu du score pour score = 0
+        self.quit_condition = "nothing"
 
+    def reset(self):                                                        # on stocke la fenetre dans une instance de classe
+        self.running = True                                                             # variable qui permet la verification du fonctionnement du jeu
+        self.clock = pygame.time.Clock()                                                # permet par la suite de fixer un framerate
+        self.background = pygame.image.load("fond.png").convert()                       # on stocke l'image de fond
+        self.score_bar = pygame.image.load("scoreBar.png")                              # on stocke l'image du bandeau
+        self.player = character.Player(143, 360)                                        # initialisation du joueur
+        self.spawner = element.Spawner(2)                                               # initialisation du spawner de boite
+        self.last_spawn = 0                                                             # permet de trouver le delta spawn
+        self.delay_spawn = 1000                                                         # initialisation du delai entre chaque spawn de boite
+        self.speed_tapis = 2                                                            # initialisation de la vitesse du tapis
+        self.last_upgrade_difficulty = 0                                                # permet de trouver le delta entre chaque augmentation de difficulté
+        self.delay_upgrade_difficulty = 2000                                            # initialisation du delai entre chaque augmentation de difficulté
+        self.ouch = False                                                               # le joueur a-t-il touché une boite ?
+        self.score = 0                                                               # récupération de la police d'affichage
+        self.score_image = self.font.render(str(self.score), True, (155, 213, 169))     # premier rendu du score pour score = 0
+        self.quit_condition = "nothing"
+
+    def get_quit_condition(self):
+        return self.quit_condition
 
     def handling_event(self):
         # Une fonction qui gère les différentes intéraction entre la fenêtre et l'utilisateur
@@ -86,7 +106,9 @@ class Game:
             if self.isColliding(self.player.rect, element.rect):
                 del(self.spawner.elements[self.spawner.elements.index(element)])
                 self.player.loss_life(1)
+                
         if not self.player.is_alive():
+            self.quit_condition = "player_dead"
             self.game_over()
 
 
