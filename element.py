@@ -94,10 +94,10 @@ class Shooter(Enemy):
 
 class Spawner:
 
-    def __init__(self, speed = 0.01):
+    def __init__(self, speed = 0.01, game = None):
         self.speed = speed
         self.elements = []
-        self.game = None
+        self.game = game
 
     def spawnBox(self):
         rand_col = functions.get_random_col()
@@ -117,9 +117,8 @@ class Spawner:
             screen.blit(element.image, element.rect)
 
 
-    def update(self, game, speed = 2):
+    def update(self, speed = 2):
         i = 0
-        self.game = game
         while i < len(self.elements):
             if self.elements[i].life <= 0:
                 del(self.elements[i])

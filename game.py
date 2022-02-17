@@ -12,7 +12,7 @@ class Game:
         self.background = pygame.image.load("fond.png").convert()                       # on stocke l'image de fond
         self.score_bar = pygame.image.load("scoreBar.png")                              # on stocke l'image du bandeau
         self.player = character.Player(143, 360)                                        # initialisation du joueur
-        self.spawner = element.Spawner(2)                                               # initialisation du spawner de boite
+        self.spawner = element.Spawner(2, self)                                               # initialisation du spawner de boite
         self.last_spawn = 0                                                             # permet de trouver le delta spawn
         self.delay_spawn = 1000                                                         # initialisation du delai entre chaque spawn de boite
         self.speed_tapis = 2                                                            # initialisation de la vitesse du tapis
@@ -83,7 +83,7 @@ class Game:
             self.speed_tapis += 0.1
             self.delay_spawn = 3000/self.speed_tapis
             self.player.delay = 1500/self.speed_tapis
-        self.spawner.update(self, self.speed_tapis)
+        self.spawner.update(self.speed_tapis)
 
         for element in self.spawner.elements:
             if self.isColliding(self.player.rect, element.rect):

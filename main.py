@@ -37,7 +37,6 @@ if __name__ == "__main__":
         
     if menu.get_button() == "play":
         game1.run()
-        print("fin")
     
         score = game1.score
         quit_condition = game1.get_quit_condition()
