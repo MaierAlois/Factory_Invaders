@@ -124,7 +124,7 @@ class Spawner:
                 del(self.elements[i])
             elif self.elements[i].rect[1] > 480:
                 del(self.elements[i])
-                game.score_up(1)
+                self.game.score_up(1)
             else:
                 self.elements[i].update(speed)
             i+=1
